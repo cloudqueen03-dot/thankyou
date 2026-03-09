@@ -3,306 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>The Cloud Queen Kitchen | Order Online</title>
+    <title>The Cloud Queen Kitchen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- ROYAL CLOUD THEME --- */
+        /* --- ROYAL GARDEN THEME --- */
         :root {
-            --bg-main: #FAF9F6;
+            --primary: #1B4332; /* Deep Emerald */
+            --primary-light: #2D6A4F;
+            --accent: #D4AF37; /* Gold */
+            --accent-light: #F4E285;
+            --bg: #FDFBF7; /* Rich Cream */
             --bg-card: #FFFFFF;
-            --primary: #1F4037; /* Deep Forest Green */
-            --accent: #C5A059; /* Royal Gold */
-            --text-dark: #1A1A1A;
-            --text-light: #666666;
+            --text-main: #0F0F0F;
+            --text-muted: #495057;
             --whatsapp: #25D366;
-            --shadow-soft: 0 4px 12px rgba(31, 64, 55, 0.06);
-            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
-            --border-radius: 18px;
+            --success: #2E7D32;
+            --radius: 24px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
+        
         body {
             margin: 0; padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: #E5E5E5; /* Background outside the app */
-            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            background-color: #E9ECEF;
+            color: var(--text-main);
             display: flex; justify-content: center;
+            min-height: 100vh;
         }
 
-        /* App Shell */
         .app-shell {
-            width: 100%; max-width: 500px;
-            background: var(--bg-main);
+            width: 100%; max-width: 480px;
+            background: var(--bg);
             min-height: 100vh;
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.1);
-            padding-bottom: 100px; /* Space for bottom cart bar */
+            box-shadow: 0 0 50px rgba(27, 67, 50, 0.1);
+            overflow-x: hidden;
+            padding-bottom: 90px;
         }
 
-        /* Typography */
-        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--primary); margin: 0; }
-        p { margin: 0; line-height: 1.5; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; margin: 0; color: var(--primary); line-height: 1.3; }
+        p { margin: 0; line-height: 1.6; color: var(--text-muted); }
 
         /* --- HEADER --- */
         .header {
-            background: var(--primary);
-            padding: 40px 20px 30px;
-            text-align: center;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(253, 251, 247, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #EAE6DB;
         }
-
-        .header-logo {
-            width: 80px; height: 80px;
-            background: white;
-            border-radius: 50%;
-            padding: 3px;
-            margin: 0 auto 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: block;
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
+        .brand-name { font-family: 'Cinzel', serif; font-size: 18px; color: var(--primary); font-weight: 700; letter-spacing: 0.5px; }
+        
+        .header-btns { display: flex; gap: 8px; }
+        .h-btn {
+            width: 40px; height: 40px; border-radius: 12px;
+            background: white; border: 1px solid #EAE6DB;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); text-decoration: none; transition: all 0.2s;
         }
-
-        .header h1 { font-size: 22px; color: white; letter-spacing: 1px; }
-        .header p { font-size: 12px; opacity: 0.8; color: var(--accent); margin-top: 4px; }
+        .h-btn:active { transform: scale(0.95); background: #F5F3EE; }
 
         /* --- HERO --- */
-        .hero-card {
-            background: white;
-            margin: -20px 15px 20px;
-            padding: 20px;
-            border-radius: var(--border-radius);
+        .hero {
+            padding: 40px 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
             text-align: center;
+            border-radius: 0 0 40px 40px;
             position: relative;
-            z-index: 101;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(197, 160, 89, 0.2);
+            overflow: hidden;
         }
-        .hero-title { font-size: 18px; margin-bottom: 5px; }
-        .quick-actions { display: flex; gap: 10px; margin-top: 15px; justify-content: center; }
-        .btn-sm {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+        /* Elegant Pattern */
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 25%);
+            pointer-events: none;
         }
-        .btn-wa { background: var(--whatsapp); color: white; }
-        .btn-zom { background: var(--primary); color: white; }
-        .btn-menu { background: white; border: 1px solid var(--primary); color: var(--primary); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 30px; margin-bottom: 10px; color: white; }
+        .hero p { opacity: 0.9; font-size: 15px; color: #E9ECEF; }
+        .chef-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 30px;
+            font-size: 13px; margin-top: 16px; font-weight: 600; border: 1px solid rgba(212, 175, 55, 0.3);
+        }
 
-        /* --- CATEGORIES TABS --- */
-        .category-tabs {
-            display: flex;
-            overflow-x: auto;
-            padding: 15px 15px 10px;
-            gap: 10px;
-            background: var(--bg-main);
-            position: sticky;
-            top: 154px; /* Adjust based on header height */
-            z-index: 99;
-        }
-        .cat-tab {
-            padding: 8px 18px;
+        /* --- SPIN WHEEL --- */
+        .spin-container {
             background: white;
-            border: 1px solid #DDD;
+            margin: -25px 15px 25px;
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 15px 40px rgba(27, 67, 50, 0.08);
+            text-align: center;
+            border: 1px solid #EAE6DB;
+            position: relative;
+            z-index: 10;
+        }
+        .spin-title { font-size: 24px; margin-bottom: 6px; }
+        .spin-sub { font-size: 14px; color: #666; margin-bottom: 25px; }
+
+        .wheel-box { position: relative; width: 280px; height: 280px; margin: 0 auto; }
+        .wheel-canvas { width: 100%; height: 100%; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        
+        .wheel-center {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px; height: 70px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px var(--accent), 0 10px 30px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10; cursor: pointer; transition: all 0.2s;
+            border: none;
+        }
+        .wheel-center:active { transform: translate(-50%, -50%) scale(0.95); }
+        .wheel-center svg { width: 26px; height: 26px; fill: var(--primary); }
+        .wheel-center:disabled { background: #EEE; cursor: not-allowed; opacity: 0.8; box-shadow: 0 0 0 5px #CCC; }
+
+        .spin-result-card {
+            display: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            margin-top: 30px;
+            padding: 25px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-dark);
+            color: white;
+            animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(27, 67, 50, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .spin-result-card.active { display: block; }
+        .price-tag { font-size: 36px; font-weight: 700; color: var(--accent-light); margin: 5px 0; font-family: 'Cinzel', serif; }
+        .coupon-code { background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 8px; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; font-weight: 700; display: inline-block; margin: 5px 0; border: 1px dashed rgba(255,255,255,0.4); font-size: 16px; }
+
+        /* --- MENU --- */
+        .menu-section { padding: 0 15px; }
+        
+        .tabs { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 10px; margin-bottom: 15px; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab {
+            padding: 10px 18px;
+            background: white;
+            border: 1px solid #EAE6DB;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
             white-space: nowrap;
             cursor: pointer;
             transition: all 0.2s;
+            color: #555;
         }
-        .cat-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        .tab.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2); }
 
-        /* --- MENU LIST --- */
-        .menu-section { padding: 0 15px; }
+        .menu-grid { display: grid; gap: 12px; }
         
-        .menu-item {
+        .item-card {
             background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: var(--border-radius);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.2s;
-        }
-        .menu-item:active { transform: scale(0.98); }
-
-        .item-info h4 { font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-dark); }
-        .item-info p { color: var(--primary); font-weight: 700; font-size: 14px; margin-top: 2px; }
-        .item-desc { font-size: 11px; color: var(--text-light); font-weight: 400; margin-top: 2px; }
-
-        /* Quantity Controls */
-        .qty-controls {
+            border-radius: 18px;
+            padding: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            border: 1px solid #F5F3EE;
+            transition: transform 0.15s;
         }
+        .item-card:active { transform: scale(0.98); }
+        
+        .item-emoji { font-size: 28px; width: 52px; height: 52px; background: #FDF8F0; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #FAF0E1; }
+        .item-info { flex: 1; }
+        .item-info h4 { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-main); }
+        .item-info p { font-size: 12px; color: #777; margin-top: 2px; }
+        .item-price { font-weight: 700; color: var(--primary); margin-right: 12px; font-size: 15px; }
+        
+        .qty-box { display: flex; align-items: center; gap: 6px; }
         .qty-btn {
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-        .btn-add { background: var(--primary); color: white; }
-        .btn-rem { background: #F0F0F0; color: var(--text-dark); }
-        .qty-display { font-weight: 700; font-size: 14px; width: 20px; text-align: center; }
-
-        /* --- BOTTOM CART BAR --- */
-        .cart-bar {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 500px;
-            background: white;
-            padding: 12px 20px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 200;
-            display: none; /* Hidden until items added */
-        }
-        .cart-bar.visible { display: block; }
-        
-        .cart-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-        .cart-count-badge {
-            background: var(--accent);
-            color: #000;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 800;
-            margin-right: 8px;
-        }
-        .cart-total { font-weight: 700; font-size: 16px; color: var(--text-dark); }
-        .view-cart-btn {
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
+            width: 30px; height: 30px;
             border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
             border: none;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.1s;
         }
+        .qty-btn:active { transform: scale(0.9); }
+        .add-btn { background: var(--primary); color: white; }
+        .less-btn { background: #F0EDE8; color: #555; }
+        .qty-num { font-weight: 700; font-size: 15px; width: 20px; text-align: center; }
 
-        /* --- SLIDE UP PANELS --- */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 300;
-        }
-        .overlay.active { opacity: 1; visibility: visible; }
-
-        .slide-panel {
-            position: fixed;
-            left: 0; right: 0; bottom: 0;
+        /* --- CART BAR --- */
+        .cart-bar {
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 480px;
             background: white;
-            max-height: 90vh;
-            border-radius: 20px 20px 0 0;
+            padding: 14px 20px;
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.08);
+            z-index: 200;
+            display: none;
+            border-top: 1px solid #EEE;
+        }
+        .cart-bar.active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .cart-left { display: flex; align-items: center; gap: 10px; }
+        .cart-badge { background: var(--accent); color: #111; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+        .cart-text { font-weight: 700; font-size: 16px; color: var(--text-main); }
+        .cart-view { background: var(--primary); color: white; padding: 12px 22px; border-radius: 14px; font-size: 14px; font-weight: 700; border: none; }
+
+        /* --- PANELS --- */
+        .overlay { position: fixed; inset: 0; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(4px); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 300; }
+        .overlay.active { opacity: 1; visibility: visible; }
+        
+        .panel {
+            position: fixed; left: 0; right: 0; bottom: 0;
+            background: white;
+            max-height: 92vh;
+            border-radius: 24px 24px 0 0;
             transform: translateY(100%);
             transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             z-index: 400;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
-        .slide-panel.active { transform: translateY(0); }
-
-        .panel-header {
-            padding: 20px;
-            border-bottom: 1px solid #EEE;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .close-btn { background: none; border: none; font-size: 24px; color: var(--text-light); cursor: pointer; }
-
-        .panel-body { padding: 20px; overflow-y: auto; flex: 1; }
+        .panel.active { transform: translateY(0); }
         
-        /* Form Styles */
-        .form-group { margin-bottom: 15px; }
-        .form-label { display: block; font-size: 12px; font-weight: 700; color: var(--text-light); margin-bottom: 5px; text-transform: uppercase; }
-        .form-input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #E0E0E0;
-            border-radius: 12px;
-            font-size: 15px;
-            background: #FAFAFA;
-        }
-        .form-input:focus { outline: none; border-color: var(--accent); background: white; }
+        .panel-head { padding: 20px; border-bottom: 1px solid #EEE; display: flex; justify-content: space-between; align-items: center; }
+        .panel-body { padding: 20px; overflow-y: auto; flex: 1; }
+        .close-btn { background: #F5F5F5; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; color: #666; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-        /* Order Summary in Cart */
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed #EEE;
+        /* Form */
+        .input-g { margin-bottom: 14px; }
+        .input-l { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .input-f { width: 100%; padding: 14px; border: 1px solid #E0E0E0; border-radius: 14px; font-size: 15px; background: #FDFBFB; transition: border-color 0.2s; }
+        .input-f:focus { outline: none; border-color: var(--primary); background: white; }
+        
+        /* Toggle */
+        .mode-selector { display: flex; gap: 10px; margin-bottom: 15px; background: #F5F5F5; padding: 4px; border-radius: 16px; }
+        .mode-btn {
+            flex: 1; padding: 12px; border: none; border-radius: 12px;
+            background: transparent; cursor: pointer; text-align: center;
+            font-weight: 600; font-size: 14px; transition: all 0.3s; color: #666;
         }
-        .order-item-name { font-weight: 600; font-size: 14px; }
-        .order-item-price { font-weight: 700; color: var(--primary); }
-        .order-item-qty { font-size: 12px; color: var(--text-light); }
+        .mode-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        .info-box {
+            background: #F8F9FA; border-radius: 14px; padding: 14px;
+            margin-bottom: 14px; border-left: 4px solid var(--primary);
+        }
+        .info-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; color: var(--primary); }
+        .info-text { font-size: 14px; color: #444; line-height: 1.5; }
 
-        /* Final Checkout Button */
-        .checkout-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--whatsapp);
+        /* Coupon */
+        .coupon-row { display: flex; gap: 10px; margin-bottom: 15px; }
+        .coupon-row input { flex: 1; }
+        .apply-btn { 
+            padding: 0 20px; background: var(--primary); color: white; 
+            border: none; border-radius: 14px; font-weight: 700; font-size: 14px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .apply-btn:active { transform: scale(0.98); }
+        .apply-btn.applied { background: var(--success); pointer-events: none; }
+        
+        .discount-row { display: flex; justify-content: space-between; color: var(--success); font-weight: 700; margin-top: 5px; }
+
+        .order-btn { width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; margin-top: 10px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3); }
+
+        /* Footer */
+        .footer {
+            background: #0F0F0F;
             color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            margin-top: 20px;
+            padding: 60px 25px 30px;
+            position: relative;
+            margin-top: 40px;
         }
-
-        /* Animations */
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .footer::before {
+            content: ''; position: absolute; top: -20px; left: 0; right: 0;
+            background: var(--bg);
+            height: 40px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
-        .menu-item { animation: slideUp 0.4s ease forwards; }
+        
+        .footer-content { position: relative; text-align: center; z-index: 1; }
+        .footer-logo { width: 60px; height: 60px; background: white; border-radius: 50%; margin: 0 auto 15px; padding: 2px; box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
+        .footer-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        
+        .footer-title { font-size: 20px; margin-bottom: 5px; color: white; }
+        .footer-desc { font-size: 14px; opacity: 0.7; margin-bottom: 25px; }
 
+        .footer-info-grid { text-align: left; margin-bottom: 30px; }
+        .footer-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 14px; color: #DDD; }
+        .footer-icon { width: 36px; height: 36px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+        
+        .social-links { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; }
+        .social-btn { width: 46px; height: 46px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.2s; text-decoration: none; }
+        .social-btn:hover { background: var(--primary); transform: translateY(-3px); }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 13px; opacity: 0.6; }
+
+        /* Modal */
+        .modal-box { background: white; max-width: 320px; margin: auto; padding: 25px; border-radius: 24px; text-align: center; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -311,409 +318,661 @@
     
     <!-- Header -->
     <header class="header">
-        <img src="./image.png" alt="Cloud Queen Logo" class="header-logo" onerror="this.src='https://z-cdn-media.chatglm.cn/files/ba0d8ece-d09d-4d4c-8a68-6e45424fc639.png'">
-        <h1>THE CLOUD QUEEN</h1>
-        <p>Every Bite Feels Like Home</p>
+        <div class="brand">
+            <img src="./image.png" alt="Logo" onerror="this.src='https://z-cdn-media.chatglm.cn/files/ba0d8ece-d09d-4d4c-8a68-6e45424fc639.png'">
+            <span class="brand-name">Cloud Queen</span>
+        </div>
+        <div class="header-btns">
+            <a href="tel:+919510917723" class="h-btn"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></a>
+            <a href="" target="_blank" class="h-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg></a>
+        </div>
     </header>
 
-    <!-- Hero / Quick Actions -->
-    <div class="hero-card">
-        <h2 class="hero-title">Thank You for Visiting!</h2>
-        <p style="font-size: 13px; color: var(--text-light);">Enjoy our freshly prepared meals. Order directly for exclusive offers.</p>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Thank You for Ordering!</h1>
+            <p>We hope you enjoyed your meal. We'd love to serve you again.</p>
+            <div class="chef-badge">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Verified Home Kitchen
+            </div>
+        </div>
+    </section>
+
+    <!-- SPIN WHEEL -->
+    <section class="spin-container">
+        <h2 class="spin-title">Lucky Draw</h2>
+        <p class="spin-sub">Tap to spin & win rewards for your next order!</p>
         
-        <div class="quick-actions">
-            <a href="https://wa.me/919510917723?text=Hi,%20I%20have%20a%20query." class="btn-sm btn-wa">
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Chat
-            </a>
-            <a href="" class="btn-sm btn-zom">Zomato Soon</a>
-            <button id="dlMenuBtn" class="btn-sm btn-menu">Download Menu</button>
+        <div class="wheel-box">
+            <canvas id="wheelCanvas" class="wheel-canvas" width="280" height="280"></canvas>
+            <button id="spinBtn" class="wheel-center" aria-label="Spin">
+                <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6z"/></svg>
+            </button>
         </div>
-    </div>
 
-    <!-- Categories -->
-    <div class="category-tabs" id="categoryTabs">
-        <!-- Tabs generated by JS -->
-    </div>
-
-    <!-- Menu Container -->
-    <div class="menu-section" id="menuContainer">
-        <!-- Items generated by JS -->
-    </div>
-
-    <!-- Bottom Cart Bar -->
-    <div class="cart-bar" id="cartBar">
-        <div class="cart-inner" id="viewCartBtn">
-            <div>
-                <span class="cart-count-badge" id="cartCount">0</span>
-                <span class="cart-total">View Cart</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 18px; font-weight: 800; color: var(--primary);" id="cartTotal">₹0</span>
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </div>
+        <div id="resultCard" class="spin-result-card">
+            <p style="opacity:0.9; font-size:13px; font-weight:500; color: white;">CONGRATULATIONS !</p>
+            <p id="resText" class="price-tag">10% OFF</p>
+            <p style="font-size:12px; opacity:0.8;">Your Exclusive Code:</p>
+            <div id="resCode" class="coupon-code">CLOUD10</div>
+            <p style="font-size:11px; opacity:0.7; margin-top:12px;">Copy this code & use at checkout</p>
         </div>
+    </section>
+
+    <!-- QUICK ACTIONS -->
+    <div style="padding: 0 15px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <a href="https://wa.me/919510917723?text=Hi,%20I%20want%20to%20reorder." style="text-decoration:none;">
+            <button class="order-btn" style="width:100%; background:var(--whatsapp);">Order Again</button>
+        </a>
+        <button id="menuBtn" class="order-btn" style="width:100%; background:var(--primary);">Download Menu</button>
     </div>
 
-</div>
-
-<!-- Cart Slide Panel -->
-<div class="overlay" id="cartOverlay"></div>
-<div class="slide-panel" id="cartPanel">
-    <div class="panel-header">
-        <h3>Your Order</h3>
-        <button class="close-btn" id="closeCart">&times;</button>
-    </div>
-    <div class="panel-body">
-        <div id="cartItemsList"></div>
-        <div id="emptyCartMsg" style="text-align: center; padding: 40px 0; color: var(--text-light); display: none;">
-            <p>Your cart is empty.</p>
+    <!-- MENU ORDERING -->
+    <section class="menu-section">
+        <div style="margin-bottom: 15px;">
+            <h2 style="font-size: 24px;">Order Online</h2>
+            <p style="font-size: 13px; color: #666;">Fresh ingredients, authentic taste.</p>
         </div>
         
-        <div id="cartSummary" style="margin-top: 20px; border-top: 1px solid #EEE; padding-top: 15px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Subtotal</span>
-                <span style="font-weight: 700;" id="summarySubtotal">₹0</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-light);">
-                <span>Delivery Charges</span>
-                <span>As per location</span>
-            </div>
-        </div>
-        
-        <button id="checkoutBtn" class="checkout-btn" disabled>
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Proceed to Checkout
-        </button>
-    </div>
-</div>
+        <div id="catTabs" class="tabs"></div>
+        <div id="menuList" class="menu-grid"></div>
+    </section>
 
-<!-- Checkout Slide Panel -->
-<div class="overlay" id="checkoutOverlay"></div>
-<div class="slide-panel" id="checkoutPanel">
-    <div class="panel-header">
-        <h3>Delivery Details</h3>
-        <button class="close-btn" id="closeCheckout">&times;</button>
-    </div>
-    <div class="panel-body">
-        <form id="orderForm">
-            <div class="form-group">
-                <label class="form-label">Your Name *</label>
-                <input type="text" class="form-input" name="name" placeholder="Enter your name" required>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="./image.png" alt="Logo" onerror="this.src='https://z-cdn-media.chatglm.cn/files/ba0d8ece-d09d-4d4c-8a68-6e45424fc639.png'">
             </div>
-            <div class="form-group">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" class="form-input" name="phone" placeholder="Enter phone number" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Delivery Address *</label>
-                <textarea class="form-input" name="address" rows="3" placeholder="Full address with landmark" required></textarea>
-            </div>
+            <h3 class="footer-title">The Cloud Queen</h3>
+            <p class="footer-desc" style="color: gold;">We deliver authentic recipes with love.</p>
 
-            <div style="background: #F5F5F5; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
-                <h4 style="font-size: 14px; margin-bottom: 10px;">Order Summary</h4>
-                <div id="finalOrderSummary"></div>
-                <div style="border-top: 1px solid #DDD; margin-top: 10px; padding-top: 10px; display: flex; justify-content: space-between; font-weight: 700;">
-                    <span>Total</span>
-                    <span id="finalTotalPrice">₹0</span>
+            <div class="footer-info-grid">
+                <div class="footer-row">
+                    <div class="footer-icon"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+                    <span>DM me for bulk / festival orders</span>
+                </div>
+                <div class="footer-row">
+                    <div class="footer-icon"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/></svg></div>
+                    <span>We accept party & celebration orders</span>
+                </div>
+                <div class="footer-row">
+                    <div class="footer-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg></div>
+                    <span>We are coming soon on Zomato</span>
                 </div>
             </div>
 
-            <button type="submit" class="checkout-btn">
+            <div class="social-links">
+                <a href="https://wa.me/919510917723" class="social-btn" title="WhatsApp">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/cloud_queen03/" target="_blank" class="social-btn" title="Instagram">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@theheartzone-h6e" target="_blank" class="social-btn" title="YouTube">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-btn" title="Facebook">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+                </a>
+            </div>
+            <div class="footer-bottom">Thank you for supporting our home kitchen!</div>
+        </div>
+    </footer>
+
+    <!-- BOTTOM CART -->
+    <div id="cartBar" class="cart-bar">
+        <div class="cart-left">
+            <span class="cart-badge" id="cartCount">0</span>
+            <span class="cart-text">View Order</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span class="cart-text" id="cartTotal">₹0</span>
+            <button class="cart-view">NEXT</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- PANELS -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Cart Panel -->
+<div id="cartPanel" class="panel">
+    <div class="panel-head">
+        <h3>Your Order</h3>
+        <button class="close-btn" onclick="closePanels()">&times;</button>
+    </div>
+    <div class="panel-body">
+        <div id="cartList"></div>
+        <div id="emptyMsg" style="text-align:center; color:#999; padding:30px;">Add items from the menu.</div>
+        <div style="margin-top:15px; border-top:1px solid #EEE; padding-top:10px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                <span>Subtotal</span>
+                <span style="font-weight:700" id="subTotal">₹0</span>
+            </div>
+        </div>
+        <button id="checkoutBtn" class="order-btn" disabled style="margin-top:20px;">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- Checkout Panel -->
+<div id="checkoutPanel" class="panel">
+    <div class="panel-head">
+        <h3>Checkout</h3>
+        <button class="close-btn" onclick="closePanels()">&times;</button>
+    </div>
+    <div class="panel-body">
+        <form id="form">
+            
+            <!-- Pickup / Delivery Toggle -->
+            <div style="margin-bottom: 15px;">
+                <label class="input-l" style="margin-bottom: 8px;">Order Type</label>
+                <div class="mode-selector">
+                    <div class="mode-btn active" data-mode="pickup">Pickup</div>
+                    <div class="mode-btn" data-mode="delivery">Delivery</div>
+                </div>
+            </div>
+
+            <!-- Info Boxes based on Mode -->
+            <div id="pickupInfo" class="info-box">
+                <div class="info-title">Pickup Address</div>
+                <div class="info-text">
+                    B-501 Sarthi Residency, Behind Vitthal Plaza, Near Sadhi Mata Mandir, GEB Road, Hasanpura Road, Naroda, Ahmedabad – 382330
+                </div>
+            </div>
+
+            <div id="deliveryInfo" class="info-box" style="display: none; background: #FFF3CD; border-color: #FFC107;">
+                <div class="info-title" style="color: #856404;">Delivery Info</div>
+                <div class="info-text" style="color: #856404;">
+                    Delivery charges apply, depends on the location.
+                </div>
+            </div>
+
+            <!-- Coupon Code -->
+            <div style="margin-bottom:15px;">
+                <label class="input-l">Have a Coupon?</label>
+                <div class="coupon-row">
+                    <input type="text" id="couponInput" class="input-f" placeholder="Enter code" style="text-transform:uppercase;">
+                    <button type="button" id="applyCouponBtn" class="apply-btn">Apply</button>
+                </div>
+                <div id="discountDisplay" class="discount-row" style="display:none;"></div>
+            </div>
+
+            <div class="input-g"><label class="input-l">Your Name *</label><input type="text" name="name" class="input-f" placeholder="Enter name" required></div>
+            <div class="input-g"><label class="input-l">Phone Number *</label><input type="tel" name="phone" class="input-f" placeholder="Enter phone" required></div>
+            
+            <div id="addressField" class="input-g" style="display: none;">
+                <label class="input-l">Delivery Address *</label>
+                <textarea name="address" class="input-f" rows="2" placeholder="Full address"></textarea>
+            </div>
+
+            <div style="background: #F5F5F5; padding:15px; border-radius:14px; margin-bottom:15px;">
+                <h4 style="font-size:14px; margin-bottom:10px;">Order Summary</h4>
+                <div id="finalSum"></div>
+                <div id="discountRow" style="display:none; border-top:1px solid #DDD; margin-top:8px; padding-top:8px; color:#2E7D32; font-weight:600;"></div>
+                <div style="border-top:1px solid #DDD; margin-top:8px; padding-top:8px; display:flex; justify-content:space-between; font-weight:700; font-size:16px;">
+                    <span>Total</span>
+                    <span id="finalPrice">₹0</span>
+                </div>
+            </div>
+
+            <button type="submit" class="order-btn" style="background:var(--whatsapp);">
                 Send Order via WhatsApp
             </button>
         </form>
     </div>
 </div>
 
-<!-- Menu Download Modal (Simple) -->
-<div class="overlay" id="menuModal">
-    <div style="background: white; max-width: 300px; margin: auto; padding: 25px; border-radius: 15px; text-align: center;">
-        <h3 style="font-size: 18px; margin-bottom: 10px;">Download Menu</h3>
-        <p style="font-size: 13px; color: var(--text-light); margin-bottom: 20px;">Save our menu images to your gallery.</p>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="./menu1.png" download class="btn-sm btn-zom" style="width: 100%; justify-content: center;">Download Page 1</a>
-            <a href="./menu2.png" download class="btn-sm btn-zom" style="width: 100%; justify-content: center;">Download Page 2</a>
+<!-- Menu Modal -->
+<div id="menuModal" class="overlay" onclick="this.classList.remove('active')">
+    <div class="modal-box">
+        <h3 style="margin-bottom:10px;">Download Menu</h3>
+        <p style="font-size:13px; color:#666; margin-bottom:20px;">Save our menu images.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="./menu1.png" download class="order-btn" style="background:var(--primary);">Download Page 1</a>
+            <a href="./menu2.png" download class="order-btn" style="background:var(--accent); color:#111;">Download Page 2</a>
         </div>
-        <button onclick="document.getElementById('menuModal').classList.remove('active')" style="margin-top: 15px; font-size: 12px; color: var(--text-light); background: none; border: none;">Close</button>
     </div>
 </div>
 
 <script>
-    // --- FULL MENU DATA ---
-    const menuData = {
+    // --- DATA ---
+    const menu = {
         "Maggi": [
-            { name: "Plain Maggi", price: 40 },
-            { name: "Butter Maggi", price: 60 },
-            { name: "Cheese Maggi", price: 60 },
-            { name: "Corn Maggi", price: 70 },
-            { name: "Vegetable Maggi", price: 80 },
-            { name: "Peri Peri Maggi", price: 80 }
+            { name: "Plain Maggi", price: 40, emoji: "🍜" }, { name: "Butter Maggi", price: 60, emoji: "🧈" },
+            { name: "Cheese Maggi", price: 60, emoji: "🧀" }, { name: "Corn Maggi", price: 70, emoji: "🌽" },
+            { name: "Vegetable Maggi", price: 80, emoji: "🥕" }, { name: "Peri Peri Maggi", price: 80, emoji: "🌶️" }
         ],
         "Pasta": [
-            { name: "Plain Pasta", price: 50 },
-            { name: "Vegetable Masala Pasta", price: 60 },
-            { name: "Cheese Pasta", price: 60 },
-            { name: "Cheese Melt Pasta", price: 70 },
-            { name: "Schezwan Pasta", price: 70 },
-            { name: "Red Sauce Pasta", price: 70 },
-            { name: "White Sauce Pasta", price: 80 }
+            { name: "Plain Pasta", price: 50, emoji: "🍝" }, { name: "Veg Masala Pasta", price: 60, emoji: "🥦" },
+            { name: "Cheese Pasta", price: 60, emoji: "🧀" }, { name: "Cheese Melt Pasta", price: 70, emoji: "🧀🔥" },
+            { name: "Schezwan Pasta", price: 70, emoji: "🌶️" }, { name: "Red Sauce Pasta", price: 70, emoji: "🍅" },
+            { name: "White Sauce Pasta", price: 80, emoji: "🥛" }
         ],
         "Waffles": [
-            { name: "Classic Waffle", price: 30 },
-            { name: "Chocolate Waffle", price: 30 },
-            { name: "KitKat Waffle", price: 40 },
-            { name: "Dark Chocolate Waffle", price: 40 },
-            { name: "White Chocolate Waffle", price: 40 },
-            { name: "Choco Chips Waffle", price: 40 }
+            { name: "Classic Waffle", price: 30, emoji: "🧇" }, { name: "Chocolate Waffle", price: 30, emoji: "🍫" },
+            { name: "KitKat Waffle", price: 40, emoji: "🍫🍬" }, { name: "Dark Choco Waffle", price: 40, emoji: "🍫" },
+            { name: "White Choco Waffle", price: 40, emoji: "🤍" }, { name: "Choco Chips Waffle", price: 40, emoji: "🍫" }
         ],
         "Sandwich": [
-            { name: "Vegetable Sandwich", price: 50 },
-            { name: "Aloo Masala Sandwich", price: 50 },
-            { name: "Bread Butter", price: 40 },
-            { name: "Paneer Sandwich", price: 70 },
-            { name: "Paneer Cheese Sandwich", price: 70 },
-            { name: "Cheese Garlic Sandwich", price: 80 },
-            { name: "Garlic Bread", price: 100 }
+            { name: "Veg Sandwich", price: 50, emoji: "🥪" }, { name: "Aloo Masala Sandwi.", price: 50, emoji: "🥔" },
+            { name: "Bread Butter", price: 40, emoji: "🍞🧈" }, { name: "Paneer Sandwich", price: 70, emoji: "🧀" },
+            { name: "Cheese Paneer Sandwi.", price: 70, emoji: "🧀" }, { name: "Cheese Garlic Sandwi.", price: 80, emoji: "🧄🧀" },
+            { name: "Garlic Bread", price: 100, emoji: "🧄🍞" }
         ],
         "Fruits & Drinks": [
-            { name: "Buttermilk", price: 20 },
-            { name: "Fruit Mini Bowl", price: 70 },
-            { name: "Fruit Big Bowl", price: 120 },
-            { name: "Fruit Bowl", price: 150 }
+            { name: "Buttermilk", price: 20, emoji: "🥛" }, { name: "Fruit Mini Bowl", price: 70, emoji: "🍓" },
+            { name: "Fruit Big Bowl", price: 120, emoji: "🍍" }, { name: "Fruit Bowl", price: 150, emoji: "🍎" }
         ],
         "Breakfast": [
-            { name: "Masala Chai (1 Cup)", price: 20 },
-            { name: "Gujarati Bhakhri (2)", price: 40 },
-            { name: "Sindhi Koki with Curd", price: 60 },
-            { name: "Poha Papad", price: 60 },
-            { name: "Dal Puri (Dal + 4 Puri)", price: 60 },
-            { name: "Aloo Paratha with Curd", price: 60 }
+            { name: "Masala Chai", price: 20, emoji: "☕" }, { name: "Gujarati Bhakhri", price: 40, emoji: "🫓" },
+            { name: "Sindhi Koki + Curd", price: 60, emoji: "🫓" }, { name: "Poha Papad", price: 60, emoji: "🍚" },
+            { name: "Dal Puri", price: 60, emoji: "🫓" }, { name: "Aloo Paratha + Curd", price: 60, emoji: "🫓🥣" }
         ],
         "Lunch": [
-            { name: "Mini Thali (1 Sabzi + 2 Roti)", price: 120, desc: "Rice | Dal | Pickle | Salad" },
-            { name: "Regular Thali (2 Sabzi)", price: 150, desc: "4 Roti | Rice | Dal | Pickle | Salad" },
-            { name: "Royal Thali", price: 200, desc: "Complete Meal + Papad + Buttermilk" }
+            { name: "Mini Thali", price: 120, emoji: "🍽️", desc: "1 Sabji | 2 Roti | Rice | Dal" },
+            { name: "Regular Thali", price: 150, emoji: "🍽️", desc: "2 Sabji | 4 Roti | Rice | Dal" },
+            { name: "Royal Thali", price: 200, emoji: "🍽️", desc: "Full Course + Papad + Buttermilk" }
         ],
         "Dinner": [
-            { name: "Mini Thali (1 Sabzi + 2 Roti)", price: 120, desc: "Rice | Dal | Pickle | Salad" },
-            { name: "Regular Thali (2 Sabzi)", price: 150, desc: "4 Roti | Rice | Dal | Pickle | Salad" },
-            { name: "Royal Thali", price: 200, desc: "Complete Meal + Papad + Buttermilk" }
+            { name: "Mini Thali", price: 120, emoji: "🍛", desc: "1 Sabji | 2 Roti | Rice | Dal" },
+            { name: "Regular Thali", price: 150, emoji: "🍛", desc: "2 Sabji | 4 Roti | Rice | Dal" },
+            { name: "Royal Thali", price: 200, emoji: "🍛", desc: "Full Course + Papad + Buttermilk" }
         ]
     };
 
     let cart = [];
+    let orderMode = 'pickup';
+    let appliedCoupon = null; 
     const PHONE = "919510917723";
 
-    // --- DOM ELEMENTS ---
-    const catTabsContainer = document.getElementById('categoryTabs');
-    const menuContainer = document.getElementById('menuContainer');
+    // LocalStorage Keys
+    const LS_KEY = 'cloudqueen_spin_data';
+
+    // --- DOM ---
+    const catTabs = document.getElementById('catTabs');
+    const menuList = document.getElementById('menuList');
     const cartBar = document.getElementById('cartBar');
-    
+    const overlay = document.getElementById('overlay');
     const cartPanel = document.getElementById('cartPanel');
-    const cartOverlay = document.getElementById('cartOverlay');
-    
     const checkoutPanel = document.getElementById('checkoutPanel');
-    const checkoutOverlay = document.getElementById('checkoutOverlay');
+    const spinBtn = document.getElementById('spinBtn');
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
 
-    // --- INITIALIZATION ---
+    // --- INIT ---
     function init() {
-        renderCategories();
-        renderMenu(Object.keys(menuData)[0]);
-        setupEventListeners();
+        renderCats();
+        renderMenu(Object.keys(menu)[0]);
+        setupEvents();
+        checkSpinStatus();
+        drawWheel();
     }
 
-    // --- RENDER FUNCTIONS ---
-    function renderCategories() {
-        catTabsContainer.innerHTML = Object.keys(menuData).map(cat => 
-            `<div class="cat-tab" data-cat="${cat}">${cat}</div>`
-        ).join('');
+    function renderCats() {
+        catTabs.innerHTML = Object.keys(menu).map(c => `<div class="tab" data-cat="${c}">${c}</div>`).join('');
     }
 
-    function renderMenu(category) {
-        const items = menuData[category];
-        menuContainer.innerHTML = '';
-
-        items.forEach(item => {
-            const cartItem = cart.find(c => c.name === item.name);
-            const qty = cartItem ? cartItem.qty : 0;
-
-            const div = document.createElement('div');
-            div.className = 'menu-item';
-            div.innerHTML = `
+    function renderMenu(cat) {
+        const items = menu[cat];
+        menuList.innerHTML = '';
+        items.forEach(i => {
+            const inCart = cart.find(c => c.name === i.name);
+            const qty = inCart ? inCart.qty : 0;
+            const el = document.createElement('div');
+            el.className = 'item-card';
+            el.innerHTML = `
+                <div class="item-emoji">${i.emoji}</div>
                 <div class="item-info">
-                    <h4>${item.name}</h4>
-                    ${item.desc ? `<p class="item-desc">${item.desc}</p>` : ''}
-                    <p>₹${item.price}</p>
+                    <h4>${i.name}</h4>
+                    <p>${i.desc ? i.desc : ''}</p>
                 </div>
-                <div class="qty-controls">
-                    ${qty === 0 ? `
-                        <button class="qty-btn btn-add" onclick="addToCart('${item.name}', ${item.price})">+</button>
-                    ` : `
-                        <button class="qty-btn btn-rem" onclick="removeFromCart('${item.name}')">−</button>
-                        <span class="qty-display">${qty}</span>
-                        <button class="qty-btn btn-add" onclick="addToCart('${item.name}', ${item.price})">+</button>
-                    `}
+                <div style="display:flex; align-items:center;">
+                    <span class="item-price">₹${i.price}</span>
+                    <div class="qty-box">
+                        ${qty === 0 ? 
+                            `<button class="qty-btn add-btn" onclick="addCart('${i.name}', ${i.price})">+</button>` :
+                            `<button class="qty-btn less-btn" onclick="remCart('${i.name}')">−</button>
+                             <span class="qty-num">${qty}</span>
+                             <button class="qty-btn add-btn" onclick="addCart('${i.name}', ${i.price})">+</button>`
+                        }
+                    </div>
                 </div>
             `;
-            menuContainer.appendChild(div);
+            menuList.appendChild(el);
         });
     }
 
-    function updateCartUI() {
-        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    function addCart(name, price) {
+        const ex = cart.find(c => c.name === name);
+        if(ex) ex.qty++; else cart.push({ name, price, qty: 1 });
+        update();
+        renderMenu(document.querySelector('.tab.active').dataset.cat);
+    }
 
-        // Bottom Bar
-        if (totalQty > 0) {
-            cartBar.classList.add('visible');
+    function remCart(name) {
+        const idx = cart.findIndex(c => c.name === name);
+        if(idx !== -1) {
+            if(cart[idx].qty > 1) cart[idx].qty--;
+            else cart.splice(idx, 1);
+        }
+        update();
+        renderMenu(document.querySelector('.tab.active').dataset.cat);
+    }
+
+    function update() {
+        const totalQty = cart.reduce((a,b) => a+b.qty, 0);
+        const totalPrice = cart.reduce((a,b) => a+(b.price*b.qty), 0);
+        
+        if(totalQty > 0) {
+            cartBar.classList.add('active');
             document.getElementById('cartCount').textContent = totalQty;
             document.getElementById('cartTotal').textContent = `₹${totalPrice}`;
         } else {
-            cartBar.classList.remove('visible');
+            cartBar.classList.remove('active');
         }
 
-        // Cart Panel Content
-        const list = document.getElementById('cartItemsList');
-        const emptyMsg = document.getElementById('emptyCartMsg');
-        const summarySub = document.getElementById('summarySubtotal');
-        const finalPrice = document.getElementById('finalTotalPrice');
-        const finalSummary = document.getElementById('finalOrderSummary');
-        const checkBtn = document.getElementById('checkoutBtn');
-
-        if (totalQty === 0) {
-            list.innerHTML = '';
-            emptyMsg.style.display = 'block';
-            checkBtn.disabled = true;
+        const list = document.getElementById('cartList');
+        const empty = document.getElementById('emptyMsg');
+        const btn = document.getElementById('checkoutBtn');
+        
+        if(totalQty === 0) {
+            list.innerHTML = ''; empty.style.display = 'block'; btn.disabled = true;
         } else {
-            emptyMsg.style.display = 'none';
-            checkBtn.disabled = false;
-            list.innerHTML = cart.map(item => `
-                <div class="order-item">
-                    <div>
-                        <div class="order-item-name">${item.name}</div>
-                        <div class="order-item-qty">Qty: ${item.qty}</div>
-                    </div>
-                    <div class="order-item-price">₹${item.price * item.qty}</div>
+            empty.style.display = 'none'; btn.disabled = false;
+            list.innerHTML = cart.map(i => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; padding-bottom:10px; border-bottom:1px dashed #EEE;">
+                    <div><span style="font-weight:600">${i.name}</span> <span style="color:#999; font-size:12px">x${i.qty}</span></div>
+                    <span style="font-weight:700">₹${i.price * i.qty}</span>
                 </div>
             `).join('');
         }
 
-        summarySub.textContent = `₹${totalPrice}`;
-        finalPrice.textContent = `₹${totalPrice}`;
-        finalSummary.innerHTML = cart.map(item => `
-            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
-                <span>${item.name} x${item.qty}</span>
-                <span>₹${item.price * item.qty}</span>
+        document.getElementById('subTotal').textContent = `₹${totalPrice}`;
+        updateCheckoutTotal();
+        document.getElementById('finalSum').innerHTML = cart.map(i => `
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span>${i.name} x${i.qty}</span>
+                <span>₹${i.price * i.qty}</span>
             </div>
         `).join('');
     }
 
-    // --- CART LOGIC ---
-    window.addToCart = (name, price) => {
-        const existing = cart.find(item => item.name === name);
-        if (existing) {
-            existing.qty++;
+    function updateCheckoutTotal() {
+        const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+        let discount = 0;
+        
+        if(appliedCoupon) {
+            discount = subtotal * (appliedCoupon.discount / 100);
+        }
+
+        const total = subtotal - discount;
+
+        document.getElementById('finalPrice').textContent = `₹${Math.round(total)}`;
+        
+        if(discount > 0) {
+            document.getElementById('discountRow').style.display = 'flex';
+            document.getElementById('discountRow').innerHTML = `
+                <span style="flex:1">Discount (${appliedCoupon.discount}%)</span>
+                <span>-₹${Math.round(discount)}</span>
+            `;
         } else {
-            cart.push({ name, price, qty: 1 });
+            document.getElementById('discountRow').style.display = 'none';
         }
-        updateCartUI();
-        // Re-render current category to update buttons
-        const activeCat = document.querySelector('.cat-tab.active').dataset.cat;
-        renderMenu(activeCat);
     }
 
-    window.removeFromCart = (name) => {
-        const idx = cart.findIndex(item => item.name === name);
-        if (idx !== -1) {
-            if (cart[idx].qty > 1) {
-                cart[idx].qty--;
-            } else {
-                cart.splice(idx, 1);
-            }
-        }
-        updateCartUI();
-        const activeCat = document.querySelector('.cat-tab.active').dataset.cat;
-        renderMenu(activeCat);
+    function openCart() {
+        cartPanel.classList.add('active'); overlay.classList.add('active');
+    }
+    function openCheckout() {
+        cartPanel.classList.remove('active');
+        checkoutPanel.classList.add('active');
+        updateCheckoutTotal();
+    }
+    function closePanels() {
+        cartPanel.classList.remove('active');
+        checkoutPanel.classList.remove('active');
+        overlay.classList.remove('active');
     }
 
-    // --- EVENT LISTENERS ---
-    function setupEventListeners() {
-        // Category Tabs
-        catTabsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('cat-tab')) {
-                document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    function setupEvents() {
+        // Tabs
+        catTabs.addEventListener('click', e => {
+            if(e.target.classList.contains('tab')) {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 e.target.classList.add('active');
                 renderMenu(e.target.dataset.cat);
             }
         });
 
-        // Open Cart
-        document.getElementById('viewCartBtn').addEventListener('click', () => {
-            cartPanel.classList.add('active');
-            cartOverlay.classList.add('active');
+        // Cart
+        cartBar.addEventListener('click', openCart);
+        document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+        overlay.addEventListener('click', closePanels);
+
+        // Mode Toggle
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                orderMode = this.dataset.mode;
+
+                if(orderMode === 'pickup') {
+                    document.getElementById('pickupInfo').style.display = 'block';
+                    document.getElementById('deliveryInfo').style.display = 'none';
+                    document.getElementById('addressField').style.display = 'none';
+                    document.querySelector('textarea[name="address"]').removeAttribute('required');
+                } else {
+                    document.getElementById('pickupInfo').style.display = 'none';
+                    document.getElementById('deliveryInfo').style.display = 'block';
+                    document.getElementById('addressField').style.display = 'block';
+                    document.querySelector('textarea[name="address"]').setAttribute('required', 'required');
+                }
+            });
         });
 
-        // Close Cart
-        document.getElementById('closeCart').addEventListener('click', closeCart);
-        cartOverlay.addEventListener('click', closeCart);
-        
-        function closeCart() {
-            cartPanel.classList.remove('active');
-            cartOverlay.classList.remove('active');
-        }
-
-        // Open Checkout
-        document.getElementById('checkoutBtn').addEventListener('click', () => {
-            cartPanel.classList.remove('active');
-            checkoutPanel.classList.add('active');
-            checkoutOverlay.classList.add('active');
-        });
-
-        // Close Checkout
-        document.getElementById('closeCheckout').addEventListener('click', closeCheckout);
-        checkoutOverlay.addEventListener('click', closeCheckout);
-
-        function closeCheckout() {
-            checkoutPanel.classList.remove('active');
-            checkoutOverlay.classList.remove('active');
-        }
-
-        // Submit Order
-        document.getElementById('orderForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const name = formData.get('name');
-            const phone = formData.get('phone');
-            const address = formData.get('address');
+        // Coupon Logic
+        document.getElementById('applyCouponBtn').addEventListener('click', () => {
+            const code = document.getElementById('couponInput').value.trim().toUpperCase();
+            const savedData = localStorage.getItem(LS_KEY);
             
-            const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-            const itemList = cart.map(i => `• ${i.name} x${i.qty} (₹${i.price * i.qty})`).join('\n');
+            if(!savedData) {
+                alert("You haven't spun the wheel yet!");
+                return;
+            }
 
-            const msg = `*New Order - The Cloud Queen*%0A%0A` +
-                        `*Customer:* ${name}%0A` +
-                        `*Phone:* ${phone}%0A` +
-                        `*Address:* ${address}%0A%0A` +
-                        `*Order Details:*%0A${encodeURIComponent(itemList)}%0A%0A` +
-                        `*Total Bill:* ₹${total}%0A` +
-                        `(Delivery Extra)`;
+            const reward = JSON.parse(savedData);
+
+            if(code === reward.code) {
+                appliedCoupon = reward;
+                document.getElementById('applyCouponBtn').textContent = "Applied";
+                document.getElementById('applyCouponBtn').classList.add('applied');
+                document.getElementById('discountDisplay').style.display = 'block';
+                document.getElementById('discountDisplay').textContent = `${reward.discount}% discount applied!`;
+                updateCheckoutTotal();
+            } else {
+                alert("Invalid coupon code. Check your spin result.");
+            }
+        });
+
+        // Form
+        document.getElementById('form').addEventListener('submit', e => {
+            e.preventDefault();
+            const fd = new FormData(e.target);
+            const name = fd.get('name');
+            const phone = fd.get('phone');
+            const address = fd.get('address');
+            
+            let subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            const items = cart.map(i => `${i.name} x${i.qty}`).join(', ');
+
+            let msg = `*New Order - The Cloud Queen*%0A%0A`;
+            msg += `*Type:* ${orderMode.toUpperCase()}%0A`;
+            msg += `*Customer:* ${name}%0A*Phone:* ${phone}%0A`;
+            
+            if(orderMode === 'delivery' && address) {
+                msg += `*Address:* ${address}%0A`;
+            }
+            
+            msg += `%0A*Items:* ${encodeURIComponent(items)}%0A%0A`;
+            
+            let finalTotal = subtotal;
+
+            if(appliedCoupon) {
+                let discountAmount = subtotal * (appliedCoupon.discount / 100);
+                finalTotal = subtotal - discountAmount;
+                msg += `*Subtotal:* ₹${subtotal}%0A`;
+                msg += `*Coupon:* ${appliedCoupon.code} (${appliedCoupon.discount}% OFF)%0A`;
+                msg += `*Discount:* -₹${Math.round(discountAmount)}%0A`;
+            }
+            
+            msg += `*Total Payable:* ₹${Math.round(finalTotal)}%0A`;
+
+            if(orderMode === 'pickup') {
+                msg += `%0A(Customer will pick up)`;
+            } else {
+                msg += `%0A(Delivery charges extra)`;
+            }
 
             window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
         });
 
-        // Download Menu Button
-        document.getElementById('dlMenuBtn').addEventListener('click', () => {
+        // Menu DL
+        document.getElementById('menuBtn').addEventListener('click', () => {
             document.getElementById('menuModal').classList.add('active');
-        });
-        document.getElementById('menuModal').addEventListener('click', (e) => {
-            if(e.target.id === 'menuModal') e.target.classList.remove('active');
         });
     }
 
-    // Initialize App
+    // --- SPIN WHEEL LOGIC ---
+    const rewards = [
+        { text: '5% OFF', code: 'LUCKY5', color: '#2D6A4F', discount: 5 },
+        { text: '10% OFF', code: 'CLOUD10', color: '#D4AF37', discount: 10 },
+        { text: 'Free Delivery', code: 'FREEDEL', color: '#95D5B2', discount: 0 },
+        { text: '7% OFF', code: 'YUM7', color: '#1B4332', discount: 7 },
+        { text: '12% OFF', code: 'FOODIE12', color: '#F4E285', discount: 12 },
+        { text: '15% OFF', code: 'BIG15', color: '#40916C', discount: 15 }
+    ];
+
+    let rotation = 0;
+    let isSpinning = false;
+
+    function checkSpinStatus() {
+        const savedData = localStorage.getItem(LS_KEY);
+        if(savedData) {
+            const reward = JSON.parse(savedData);
+            spinBtn.disabled = true;
+            spinBtn.style.opacity = '0.5';
+            spinBtn.style.cursor = 'not-allowed';
+            spinBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+            
+            document.getElementById('resText').innerText = reward.text;
+            document.getElementById('resCode').innerText = reward.code;
+            document.getElementById('resultCard').classList.add('active');
+        }
+    }
+
+    function drawWheel() {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const r = Math.max(1, cx - 10);
+        const arc = (2 * Math.PI) / rewards.length;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        rewards.forEach((s, i) => {
+            const angle = i * arc;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, angle, angle + arc);
+            ctx.closePath();
+            ctx.fillStyle = s.color;
+            ctx.fill();
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(angle + arc / 2);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = (s.color === '#F4E285' || s.color === '#95D5B2') ? '#1A1A1A' : '#FFFFFF';
+            ctx.font = 'bold 14px Montserrat';
+            ctx.shadowColor = 'rgba(0,0,0,0.4)';
+            ctx.shadowBlur = 4;
+            ctx.fillText(s.text, r - 20, 5);
+            ctx.restore();
+        });
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, 32, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FFF';
+        ctx.fill();
+        ctx.strokeStyle = '#D4AF37';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+    }
+
+    function spin() {
+        if(isSpinning || localStorage.getItem(LS_KEY)) return;
+        
+        isSpinning = true;
+        spinBtn.disabled = true;
+        spinBtn.style.opacity = '0.5';
+        document.getElementById('resultCard').classList.remove('active');
+
+        const winIndex = Math.floor(Math.random() * rewards.length);
+        const won = rewards[winIndex];
+
+        const arc = (2 * Math.PI) / rewards.length;
+        let targetAngle = (-Math.PI / 2) - (winIndex * arc + arc / 2);
+        const spins = 5 + Math.random() * 3;
+        const totalRotation = targetAngle + (spins * 2 * Math.PI);
+        
+        const duration = 5000;
+        const startTime = performance.now();
+
+        function animate(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+
+            rotation = totalRotation * ease;
+            
+            ctx.save();
+            ctx.translate(canvas.width/2, canvas.height/2);
+            ctx.rotate(rotation);
+            ctx.translate(-canvas.width/2, -canvas.height/2);
+            drawWheel();
+            ctx.restore();
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                isSpinning = false;
+                
+                // Save Result
+                localStorage.setItem(LS_KEY, JSON.stringify(won));
+                
+                spinBtn.style.opacity = '1';
+                spinBtn.style.cursor = 'not-allowed';
+                spinBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                
+                // Show result
+                document.getElementById('resText').innerText = won.text;
+                document.getElementById('resCode').innerText = won.code;
+                document.getElementById('resultCard').classList.add('active');
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    spinBtn.addEventListener('click', spin);
+    
     init();
 
 </script>
-
 </body>
 </html>
