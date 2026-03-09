@@ -589,8 +589,6 @@
     let orderMode = 'pickup';
     let appliedCoupon = null; 
     const PHONE = "919510917723";
-
-    // LocalStorage Keys
     const LS_KEY = 'cloudqueen_spin_data';
 
     // --- DOM ---
@@ -681,13 +679,25 @@
         const btn = document.getElementById('checkoutBtn');
         
         if(totalQty === 0) {
-            list.innerHTML = ''; empty.style.display = 'block'; btn.disabled = true;
+            list.innerHTML = ''; 
+            empty.style.display = 'block'; 
+            btn.disabled = true;
         } else {
-            empty.style.display = 'none'; btn.disabled = false;
+            empty.style.display = 'none'; 
+            btn.disabled = false;
+            
+            // CART ROW WITH CONTROLS
             list.innerHTML = cart.map(i => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px; padding-bottom:10px; border-bottom:1px dashed #EEE;">
-                    <div><span style="font-weight:600">${i.name}</span> <span style="color:#999; font-size:12px">x${i.qty}</span></div>
-                    <span style="font-weight:700">₹${i.price * i.qty}</span>
+                <div class="cart-item-row">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${i.name}</div>
+                        <div class="cart-item-price">₹${i.price} × ${i.qty}</div>
+                    </div>
+                    <div class="qty-box">
+                        <button class="qty-btn less-btn" onclick="remCart('${i.name}')">−</button>
+                        <span class="qty-num">${i.qty}</span>
+                        <button class="qty-btn add-btn" onclick="addCart('${i.name}', ${i.price})">+</button>
+                    </div>
                 </div>
             `).join('');
         }
@@ -696,7 +706,7 @@
         updateCheckoutTotal();
         document.getElementById('finalSum').innerHTML = cart.map(i => `
             <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
-                <span>${i.name} x${i.qty}</span>
+                <span>${i.name} × ${i.qty}</span>
                 <span>₹${i.price * i.qty}</span>
             </div>
         `).join('');
@@ -725,9 +735,7 @@
         }
     }
 
-    function openCart() {
-        cartPanel.classList.add('active'); overlay.classList.add('active');
-    }
+    function openCart() { cartPanel.classList.add('active'); overlay.classList.add('active'); }
     function openCheckout() {
         cartPanel.classList.remove('active');
         checkoutPanel.classList.add('active');
@@ -740,7 +748,6 @@
     }
 
     function setupEvents() {
-        // Tabs
         catTabs.addEventListener('click', e => {
             if(e.target.classList.contains('tab')) {
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -749,12 +756,10 @@
             }
         });
 
-        // Cart
         cartBar.addEventListener('click', openCart);
         document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
         overlay.addEventListener('click', closePanels);
 
-        // Mode Toggle
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -775,15 +780,11 @@
             });
         });
 
-        // Coupon Logic
         document.getElementById('applyCouponBtn').addEventListener('click', () => {
             const code = document.getElementById('couponInput').value.trim().toUpperCase();
             const savedData = localStorage.getItem(LS_KEY);
             
-            if(!savedData) {
-                alert("You haven't spun the wheel yet!");
-                return;
-            }
+            if(!savedData) { alert("Spin the wheel first!"); return; }
 
             const reward = JSON.parse(savedData);
 
@@ -795,11 +796,10 @@
                 document.getElementById('discountDisplay').textContent = `${reward.discount}% discount applied!`;
                 updateCheckoutTotal();
             } else {
-                alert("Invalid coupon code. Check your spin result.");
+                alert("Invalid coupon code.");
             }
         });
 
-        // Form
         document.getElementById('form').addEventListener('submit', e => {
             e.preventDefault();
             const fd = new FormData(e.target);
@@ -814,9 +814,7 @@
             msg += `*Type:* ${orderMode.toUpperCase()}%0A`;
             msg += `*Customer:* ${name}%0A*Phone:* ${phone}%0A`;
             
-            if(orderMode === 'delivery' && address) {
-                msg += `*Address:* ${address}%0A`;
-            }
+            if(orderMode === 'delivery' && address) { msg += `*Address:* ${address}%0A`; }
             
             msg += `%0A*Items:* ${encodeURIComponent(items)}%0A%0A`;
             
@@ -832,22 +830,18 @@
             
             msg += `*Total Payable:* ₹${Math.round(finalTotal)}%0A`;
 
-            if(orderMode === 'pickup') {
-                msg += `%0A(Customer will pick up)`;
-            } else {
-                msg += `%0A(Delivery charges extra)`;
-            }
+            if(orderMode === 'pickup') { msg += `%0A(Customer will pick up)`; } 
+            else { msg += `%0A(Delivery charges extra)`; }
 
             window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
         });
 
-        // Menu DL
         document.getElementById('menuBtn').addEventListener('click', () => {
             document.getElementById('menuModal').classList.add('active');
         });
     }
 
-    // --- SPIN WHEEL LOGIC ---
+    // --- SPIN WHEEL ---
     const rewards = [
         { text: '5% OFF', code: 'LUCKY5', color: '#2D6A4F', discount: 5 },
         { text: '10% OFF', code: 'CLOUD10', color: '#D4AF37', discount: 10 },
@@ -856,7 +850,7 @@
         { text: '12% OFF', code: 'FOODIE12', color: '#F4E285', discount: 12 },
         { text: '15% OFF', code: 'BIG15', color: '#40916C', discount: 15 }
     ];
- 
+
     let rotation = 0;
     let isSpinning = false;
 
@@ -954,14 +948,12 @@
             } else {
                 isSpinning = false;
                 
-                // Save Result
                 localStorage.setItem(LS_KEY, JSON.stringify(won));
                 
                 spinBtn.style.opacity = '1';
                 spinBtn.style.cursor = 'not-allowed';
                 spinBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
                 
-                // Show result
                 document.getElementById('resText').innerText = won.text;
                 document.getElementById('resCode').innerText = won.code;
                 document.getElementById('resultCard').classList.add('active');
